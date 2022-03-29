@@ -11,8 +11,3 @@ public class DialogueNode : Node
 
     public bool EntryPoint = false;
 }
-
-public class LocalisableText
-{
-    public string[] texts = new string[(int)Languages.LANGUAGESLENGTH];
-}

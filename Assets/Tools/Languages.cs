@@ -11,3 +11,8 @@ public enum Languages
     //Not a language, for use with the editor's internals. Don't touch.
     LANGUAGESLENGTH
 }
+
+public class LocalisableText
+{
+    public string[] texts = new string[(int)Languages.LANGUAGESLENGTH];
+}

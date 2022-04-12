@@ -10,6 +10,7 @@ public class DialogueGraphView : GraphView
 {
     public readonly Vector2 DefaultNodeSize = new Vector2(200, 150);
     public EdEntryNode EntryPointNode;
+    public NodeEditor nodeEditor;
 
     public DialogueGraphView()
     {
@@ -48,6 +49,7 @@ public class DialogueGraphView : GraphView
                 entry = true;
                 newNode.entry = true;
                 newNode.tooltip = "This is where the dialogue tree starts";
+                
                 break;
 
             case ENodeType.SPEAK:
@@ -68,6 +70,7 @@ public class DialogueGraphView : GraphView
         newNode.GUID = Guid.NewGuid().ToString();
         newNode.nodeName = newNodeName;
         //newNode.dialogueText.texts[0] = newNodeName;
+        newNode.nodeType = type;
 
         //Style sheet for looks
         newNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -77,6 +80,9 @@ public class DialogueGraphView : GraphView
             Port inputPort = GetPortInstance(newNode, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "In";
             newNode.inputContainer.Add(inputPort);
+            newNode.graphView = this;
+            Debug.Log(newNode.dialogueText.engText);
+            newNode.dialogueText.engText = "Sample Text";
         }
         else
         {
@@ -120,9 +126,47 @@ public class DialogueGraphView : GraphView
         return compatiblePorts;
     }
 
-    private void RefreshNode(EditorNodeBase node)
+    private void RefreshNode(Node node)
     {
         node.RefreshExpandedState();
         node.RefreshPorts();
+    }
+
+    public void LoadNodeEditor(EditorNodeBase node)
+    {
+        if(nodeEditor != null)
+        {
+            RemoveElement(nodeEditor);
+            nodeEditor = null;
+        }
+        nodeEditor = new NodeEditor();
+        nodeEditor.nodeToEdit = node;
+        nodeEditor.typeOfNode = node.nodeType;
+        nodeEditor.titleContainer.Add(new Label(node.nodeName));
+
+        nodeEditor.SetPosition(new Rect(10, 30, 300, 400));
+        nodeEditor.title = "Node Editor";
+
+        TextField textInput = new TextField();
+        textInput.name = "Text";
+        textInput.value = node.dialogueText.engText;
+
+        textInput.RegisterValueChangedCallback(evt => node.dialogueText.engText = evt.newValue);
+        nodeEditor.outputContainer.Add(textInput);
+
+        Button saveButton = new Button(() => SaveNodeChanges())
+        {
+            text = "Save"
+        };
+        nodeEditor.outputContainer.Add(saveButton);
+
+        RefreshNode(node);
+
+        AddElement(nodeEditor);
+    }
+
+    public void SaveNodeChanges()
+    {
+
     }
 }

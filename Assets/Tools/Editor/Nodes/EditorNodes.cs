@@ -9,9 +9,19 @@ public class EditorNodeBase : Node
     public string nodeName;
     public Vector2 graphLocation;
     public ENodeType nodeType;
-    public LocalisableText dialogueText;
+    public LocalisableText dialogueText = new LocalisableText();
     public EditorNodeBase[] connectedNodes;
     public bool entry = false;
+    public DialogueGraphView graphView;
+
+    public override void OnSelected()
+    {
+        base.OnSelected();
+        if(!entry)
+        {
+            graphView.LoadNodeEditor(this);
+        }
+    }
 }
 
 public class EdEntryNode : EditorNodeBase
@@ -38,13 +48,4 @@ public class EdDialogueChoices
 {
     public LocalisableText dialogueText;
     public EditorNodeBase connectedNode;
-}
-
-public enum ENodeType
-{
-    EMPTY,
-    ENTRY,
-    SPEAK,
-    PLAYER,
-    RANDOM
 }

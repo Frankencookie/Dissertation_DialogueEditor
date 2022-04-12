@@ -12,7 +12,11 @@ public enum Languages
     LANGUAGESLENGTH
 }
 
-public class LocalisableText
+[System.Serializable]
+public struct LocalisableText
 {
-    public string[] texts = new string[(int)Languages.LANGUAGESLENGTH];
+    //public string[] texts = new string[(int)Languages.LANGUAGESLENGTH];
+    //public List<string> texts = new List<string>();
+    //public string[] texts;
+    public string engText;
 }

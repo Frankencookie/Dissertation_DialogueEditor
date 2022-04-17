@@ -94,6 +94,11 @@ public class DialogueGraphView : GraphView
         outputPort.portName = "Out";
         newNode.outputContainer.Add(outputPort);
 
+        Label textPreview = new Label(newNode.dialogueText.engText);
+        newNode.previewText = textPreview;
+        newNode.contentContainer.Add(textPreview);
+        newNode.titleContainer.Add(new Label(newNode.nodeType.ToString()));
+
         RefreshNode(newNode);
 
         //Add Title Text
@@ -126,7 +131,7 @@ public class DialogueGraphView : GraphView
         return compatiblePorts;
     }
 
-    private void RefreshNode(Node node)
+    public void RefreshNode(Node node)
     {
         node.RefreshExpandedState();
         node.RefreshPorts();
@@ -142,23 +147,23 @@ public class DialogueGraphView : GraphView
         nodeEditor = new NodeEditor();
         nodeEditor.nodeToEdit = node;
         nodeEditor.typeOfNode = node.nodeType;
-        nodeEditor.titleContainer.Add(new Label(node.nodeName));
+        nodeEditor.titleContainer.Add(new Label(node.nodeType.ToString()));
 
         nodeEditor.SetPosition(new Rect(10, 30, 300, 400));
         nodeEditor.title = "Node Editor";
+
+        TextField nameInput = new TextField();
+        nameInput.name = "Node Name";
+        nameInput.value = node.nodeName;
+        nameInput.RegisterValueChangedCallback(evt => node.ChangeName(evt.newValue));
+        nodeEditor.contentContainer.Add(nameInput);
 
         TextField textInput = new TextField();
         textInput.name = "Text";
         textInput.value = node.dialogueText.engText;
 
-        textInput.RegisterValueChangedCallback(evt => node.dialogueText.engText = evt.newValue);
-        nodeEditor.outputContainer.Add(textInput);
-
-        Button saveButton = new Button(() => SaveNodeChanges())
-        {
-            text = "Save"
-        };
-        nodeEditor.outputContainer.Add(saveButton);
+        textInput.RegisterValueChangedCallback(evt => node.UpdateText(evt.newValue));
+        nodeEditor.contentContainer.Add(textInput);
 
         RefreshNode(node);
 

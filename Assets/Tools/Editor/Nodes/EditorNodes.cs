@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
+using System;
+using System.Linq;
 
 public class EditorNodeBase : Node
 {
@@ -14,6 +17,8 @@ public class EditorNodeBase : Node
     public bool entry = false;
     public DialogueGraphView graphView;
 
+    public Label previewText;
+
     public override void OnSelected()
     {
         base.OnSelected();
@@ -21,6 +26,22 @@ public class EditorNodeBase : Node
         {
             graphView.LoadNodeEditor(this);
         }
+    }
+
+    public void ChangeName(string newName)
+    {
+        nodeName = newName;
+        title = newName;
+        graphView.RefreshNode(this);
+        MarkDirtyRepaint();
+    }
+
+    public void UpdateText(string newText)
+    {
+        dialogueText.engText = newText;
+        previewText.text = newText;
+        previewText.MarkDirtyRepaint();
+        MarkDirtyRepaint();
     }
 }
 

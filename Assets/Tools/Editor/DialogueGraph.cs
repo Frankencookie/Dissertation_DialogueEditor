@@ -63,7 +63,17 @@ public class DialogueGraph : EditorWindow
         newNodeButton.text = "New Speak Node";
         toolBar.Add(newNodeButton);
 
+        Button newPlayerNode = new Button(() => CreateNewNode(ENodeType.PLAYER));
+        newPlayerNode.text = "New Player Node";
+        toolBar.Add(newPlayerNode);
+
+        Button newRandomNode = new Button(() => CreateNewNode(ENodeType.RANDOM));
+        newRandomNode.text = "New Random Node";
+        toolBar.Add(newRandomNode);
+
         toolBar.Add(new Button(() => SaveGraph()) {text = "Save"});
+
+        toolBar.Add(new Button(() => LoadGraph()){text = "Load"});
 
         rootVisualElement.Add(toolBar);
     }
@@ -72,6 +82,12 @@ public class DialogueGraph : EditorWindow
     {
         GraphSaver saver = GraphSaver.GetInstance(graphView);
         saver.SaveGraph("sample");
+    }
+
+    private void LoadGraph()
+    {
+        GraphSaver saver = GraphSaver.GetInstance(graphView);
+        saver.LoadGraph("sample");
     }
 
     private void StartupPrompt()

@@ -52,6 +52,69 @@ public class GraphSaver
         AssetDatabase.SaveAssets();
     }
 
+    public void LoadGraph(string fileName)
+    {
+        _dialogueContainer = Resources.Load<DialogueContainerSO>(fileName);
+
+        ClearGraph();
+        GenerateNodes();
+        ConnectNodes();
+    }
+
+    private void ClearGraph()
+    {
+        //Clear all edges
+        foreach (Edge oldEdge in Edges)
+        {
+            _graphView.RemoveElement(oldEdge);
+        }
+        //Clear all nodes but entry
+        foreach (EditorNodeBase oldNode in Nodes)
+        {
+            if(oldNode.entry)
+            {
+                //continue;
+            }
+            _graphView.RemoveElement(oldNode);
+        }
+
+        NodeInspector.EmptyInspector();
+    }
+
+    private void GenerateNodes()
+    {
+        foreach(DialogueNodeBase nodeToLoad in _dialogueContainer.nodes)
+        {
+            if(nodeToLoad.entry)
+            {
+                //continue;
+            }
+            EditorNodeBase newNode = _graphView.CreateNode(nodeToLoad.nodeName, nodeToLoad.nodeType, nodeToLoad.GetGraphPos());
+            newNode.GUID = nodeToLoad.GUID;
+            newNode.dialogueText = nodeToLoad.dialogueText;
+            _graphView.AddElement(newNode);
+            _graphView.RefreshNode(newNode);
+        }
+    }
+
+    private void ConnectNodes()
+    {
+        foreach (var item in _dialogueContainer.linkData)
+        {
+            Edge newEdge = new Edge()
+            {
+                //input = Nodes.First(x => x.GUID == item.TargetNodeGUID),
+                input = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.TargetNodeGUID).inputContainer[0].Q<Port>(),
+                //output = _graphView.GetNodeByGuid(item.BaseNodeGUID).outputContainer[0].Q<Port>()
+                output = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.BaseNodeGUID).outputContainer[0].Q<Port>()
+            };
+
+            newEdge.input.Connect(newEdge);
+            newEdge.output.Connect(newEdge);
+            _graphView.Add(newEdge);
+        }
+    }
+
     private bool SaveNodes(string fileName, DialogueContainerSO container)
     {
         if(!Edges.Any()) return false;
@@ -68,7 +131,7 @@ public class GraphSaver
         for(int i = 0; i < connectedSockets.Count(); i++)
         {
             EditorNodeBase outNode = (connectedSockets[i].output.node as EditorNodeBase);
-            EditorNodeBase inNode = (connectedSockets[i].output.node as EditorNodeBase);
+            EditorNodeBase inNode = (connectedSockets[i].input.node as EditorNodeBase);
             container.linkData.Add(new NodeLinkData
             {
                 BaseNodeGUID = outNode.GUID,
@@ -122,6 +185,9 @@ public class GraphSaver
         newNode.GUID = inNode.GUID;
         newNode.nodeType = type;
         newNode.dialogueText = inNode.dialogueText;
+        newNode.nodeName = inNode.nodeName;
+        newNode.locationOnGraph = inNode.GetPosition().position;
+        newNode.eventID = inNode.eventID_editor;
 
         container.nodes.Add(newNode);
     }

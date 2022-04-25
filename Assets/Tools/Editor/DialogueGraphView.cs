@@ -30,12 +30,14 @@ public class DialogueGraphView : GraphView
         CreateNewNode("Entry", ENodeType.ENTRY, new Vector2(100, 200));
     }
 
-    public void CreateNewNode(string newNodeName, ENodeType type, Vector2 position)
+    public EditorNodeBase CreateNewNode(string newNodeName, ENodeType type, Vector2 position)
     {
-        AddElement(CreateNode(newNodeName, type, position));
+        EditorNodeBase newNode = CreateNode(newNodeName, type, position);
+        AddElement(newNode);
+        return newNode;
     }
 
-    private EditorNodeBase CreateNode(string newNodeName, ENodeType type, Vector2 position)
+    public EditorNodeBase CreateNode(string newNodeName, ENodeType type, Vector2 position)
     {
         EditorNodeBase newNode;
         bool entry = false;
@@ -62,6 +64,10 @@ public class DialogueGraphView : GraphView
                 newNode.tooltip = "This is a dialogue choice node for the player. Use this to create branches";
                 break;
 
+            case ENodeType.RANDOM:
+                newNode = new EdRandomNode();
+                newNode.tooltip = "This node picks a connected node at random";
+                break;
             default:
                 return null;
         }
@@ -75,7 +81,7 @@ public class DialogueGraphView : GraphView
         //Style sheet for looks
         newNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
         
-        if(!entry) //Create input port + add it to node if not entry
+        if(!entry) //If not an entry node, add an input port
         {
             Port inputPort = GetPortInstance(newNode, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "In";
@@ -135,6 +141,7 @@ public class DialogueGraphView : GraphView
     {
         node.RefreshExpandedState();
         node.RefreshPorts();
+        node.MarkDirtyRepaint();
     }
 
     public void LoadNodeEditor(EditorNodeBase node)

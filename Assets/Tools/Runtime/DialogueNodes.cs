@@ -6,10 +6,18 @@ using UnityEngine;
 public class DialogueNodeBase
 {
     public string GUID;
+    public string nodeName;
     public ENodeType nodeType;
     public bool entry = false;
     public LocalisableText dialogueText;
+    public int eventID;
     public List<DialogueNodeBase> ConnectedNodes = new List<DialogueNodeBase>();
+    public Vector2 locationOnGraph;
+
+    public Vector2 GetGraphPos()
+    {
+        return locationOnGraph;
+    }
 }
 
 public class EntryNode : DialogueNodeBase

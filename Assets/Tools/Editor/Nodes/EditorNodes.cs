@@ -16,15 +16,18 @@ public class EditorNodeBase : Node
     public EditorNodeBase[] connectedNodes;
     public bool entry = false;
     public DialogueGraphView graphView;
+    public int eventID_editor = 0;
 
     public Label previewText;
+    protected int previewLength = 25;
 
     public override void OnSelected()
     {
         base.OnSelected();
         if(!entry)
         {
-            graphView.LoadNodeEditor(this);
+            //graphView.LoadNodeEditor(this);
+            NodeInspector.Init(this);
         }
     }
 
@@ -39,7 +42,14 @@ public class EditorNodeBase : Node
     public void UpdateText(string newText)
     {
         dialogueText.engText = newText;
-        previewText.text = newText;
+        if (newText.Length > previewLength)
+        {
+            previewText.text = newText.Substring(0, previewLength);
+        }
+        else
+        {
+            previewText.text = newText;
+        }
         previewText.MarkDirtyRepaint();
         MarkDirtyRepaint();
     }

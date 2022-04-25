@@ -13,46 +13,58 @@ MonoBehaviour:
   m_Name: sample
   m_EditorClassIdentifier: 
   nodes:
-  - GUID: 5f84f7e0-1186-45cb-b11a-1da176253663
+  - GUID: 7c11759e-103b-4caf-ad81-4af293507c62
+    nodeName: Entry
     nodeType: 1
     entry: 1
     dialogueText:
       engText: 
     ConnectedNodes:
-    - GUID: 3036352e-b983-4a72-ae3a-d1f1acf18a15
+    - GUID: 435482bc-b91a-4ea6-aef5-55f21636143e
+      nodeName: Intro
       nodeType: 2
       entry: 0
       dialogueText:
-        engText: This text proves its working
+        engText: Whats up guys my name is Henry
       ConnectedNodes:
-      - GUID: 81b61a8e-e439-4ac2-b2a6-3a0062beb0ab
+      - GUID: a101385a-b1de-4a1b-929b-819bed950599
+        nodeName: Job
         nodeType: 2
         entry: 0
         dialogueText:
-          engText: Sample Text
+          engText: I am a potion seller, what can i get you today?
         ConnectedNodes: []
-  - GUID: 81b61a8e-e439-4ac2-b2a6-3a0062beb0ab
+        locationOnGraph: {x: 505, y: 303}
+      locationOnGraph: {x: 299, y: 257}
+    locationOnGraph: {x: 100, y: 200}
+  - GUID: 435482bc-b91a-4ea6-aef5-55f21636143e
+    nodeName: Intro
     nodeType: 2
     entry: 0
     dialogueText:
-      engText: Sample Text
-    ConnectedNodes: []
-  - GUID: 3036352e-b983-4a72-ae3a-d1f1acf18a15
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: This text proves its working
+      engText: Whats up guys my name is Henry
     ConnectedNodes:
-    - GUID: 81b61a8e-e439-4ac2-b2a6-3a0062beb0ab
+    - GUID: a101385a-b1de-4a1b-929b-819bed950599
+      nodeName: Job
       nodeType: 2
       entry: 0
       dialogueText:
-        engText: Sample Text
+        engText: I am a potion seller, what can i get you today?
       ConnectedNodes: []
+      locationOnGraph: {x: 505, y: 303}
+    locationOnGraph: {x: 299, y: 257}
+  - GUID: a101385a-b1de-4a1b-929b-819bed950599
+    nodeName: Job
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: I am a potion seller, what can i get you today?
+    ConnectedNodes: []
+    locationOnGraph: {x: 505, y: 303}
   linkData:
-  - BaseNodeGUID: 5f84f7e0-1186-45cb-b11a-1da176253663
+  - BaseNodeGUID: 7c11759e-103b-4caf-ad81-4af293507c62
     PortName: Out
-    TargetNodeGUID: 5f84f7e0-1186-45cb-b11a-1da176253663
-  - BaseNodeGUID: 3036352e-b983-4a72-ae3a-d1f1acf18a15
+    TargetNodeGUID: 435482bc-b91a-4ea6-aef5-55f21636143e
+  - BaseNodeGUID: 435482bc-b91a-4ea6-aef5-55f21636143e
     PortName: Out
-    TargetNodeGUID: 3036352e-b983-4a72-ae3a-d1f1acf18a15
+    TargetNodeGUID: a101385a-b1de-4a1b-929b-819bed950599

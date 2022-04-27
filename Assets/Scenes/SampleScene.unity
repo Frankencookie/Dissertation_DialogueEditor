@@ -1086,6 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5371f02310b3547b1bab9e08db52fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  self: {fileID: 0}
   spokenTextComponent: {fileID: 652863406}
   dialogueOptionPrefab: {fileID: 0}
   dialogueObject: {fileID: 11400000, guid: 369c1282bcd86bc48b5db04c31238a72, type: 2}

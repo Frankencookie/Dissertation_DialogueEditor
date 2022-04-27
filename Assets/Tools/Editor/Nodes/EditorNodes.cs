@@ -13,7 +13,7 @@ public class EditorNodeBase : Node
     public Vector2 graphLocation;
     public ENodeType nodeType;
     public LocalisableText dialogueText = new LocalisableText();
-    public EditorNodeBase[] connectedNodes;
+    public string[] connectedNodes;
     public bool entry = false;
     public DialogueGraphView graphView;
     public int eventID_editor = 0;
@@ -27,7 +27,7 @@ public class EditorNodeBase : Node
         if(!entry)
         {
             //graphView.LoadNodeEditor(this);
-            NodeInspector.Init(this);
+            NodeInspector.Init(this, graphView);
         }
     }
 
@@ -78,5 +78,5 @@ public class EdPlayerNode : EditorNodeBase
 public class EdDialogueChoices
 {
     public LocalisableText dialogueText;
-    public EditorNodeBase connectedNode;
+    public string connectedNode;
 }

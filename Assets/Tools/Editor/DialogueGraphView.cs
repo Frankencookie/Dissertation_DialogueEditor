@@ -83,7 +83,7 @@ public class DialogueGraphView : GraphView
         
         if(!entry) //If not an entry node, add an input port
         {
-            Port inputPort = GetPortInstance(newNode, Direction.Input, Port.Capacity.Multi);
+            Port inputPort = CreatePort(newNode, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "In";
             newNode.inputContainer.Add(inputPort);
             newNode.graphView = this;
@@ -96,13 +96,17 @@ public class DialogueGraphView : GraphView
         }
         
         //Create Default Output Port
-        Port outputPort = GetPortInstance(newNode, Direction.Output);
+        Port outputPort = CreatePort(newNode, Direction.Output);
         outputPort.portName = "Out";
         newNode.outputContainer.Add(outputPort);
+        if(newNode.nodeType != ENodeType.RANDOM)
+        {
+            Label textPreview = new Label(newNode.dialogueText.engText);
+            newNode.previewText = textPreview;
+            newNode.contentContainer.Add(textPreview);
+        }
 
-        Label textPreview = new Label(newNode.dialogueText.engText);
-        newNode.previewText = textPreview;
-        newNode.contentContainer.Add(textPreview);
+
         newNode.titleContainer.Add(new Label(newNode.nodeType.ToString()));
 
         RefreshNode(newNode);
@@ -117,7 +121,7 @@ public class DialogueGraphView : GraphView
 
     }
 
-    private Port GetPortInstance(EditorNodeBase node, Direction nodeDirection, Port.Capacity capacity = Port.Capacity.Single)
+    private Port CreatePort(EditorNodeBase node, Direction nodeDirection, Port.Capacity capacity = Port.Capacity.Single)
     {
         return node.InstantiatePort(Orientation.Horizontal, nodeDirection, capacity, typeof(float));
     }
@@ -137,48 +141,65 @@ public class DialogueGraphView : GraphView
         return compatiblePorts;
     }
 
+    public void AddPort(EditorNodeBase node)
+    {
+        Port newport = CreatePort(node, Direction.Output);
+        newport.portName = "ExtraPort";
+
+        node.outputContainer.Add(newport);
+
+        RefreshNode(node);
+    }
+
+    public void RemovePort(EditorNodeBase node, Port portToRemove)
+    {
+        if(portToRemove == null)
+        {
+            return;
+        }
+        if(portToRemove.connected)
+        {
+            portToRemove.DisconnectAll();
+        }
+
+        node.outputContainer.Remove(portToRemove);
+        RefreshNode(node);
+    }
+
+    public void RemoveLastPort(EditorNodeBase node)
+    {
+        //If number of output ports is 1, dont remove any
+        Debug.Log(node.outputContainer.childCount);
+        if(node.outputContainer.childCount < 1)
+        {
+            return;
+        }
+
+        //if a port has no connections, remove it
+        Port portRef = null;
+        foreach(var item in node.outputContainer.Children())
+        {
+            //If default port, continue
+            if((item as Port).portName == "Out")
+            {
+                continue;
+            }
+            portRef = (item as Port);
+            if(!portRef.connected)
+            {
+                RemovePort(node, portRef);
+                return;
+            }
+        }
+
+        //if no ports have been removed, remove the last one saved
+        RemovePort(node, portRef);
+    }
+
     public void RefreshNode(Node node)
     {
         node.RefreshExpandedState();
         node.RefreshPorts();
         node.MarkDirtyRepaint();
-    }
-
-    public void LoadNodeEditor(EditorNodeBase node)
-    {
-        if(nodeEditor != null)
-        {
-            RemoveElement(nodeEditor);
-            nodeEditor = null;
-        }
-        nodeEditor = new NodeEditor();
-        nodeEditor.nodeToEdit = node;
-        nodeEditor.typeOfNode = node.nodeType;
-        nodeEditor.titleContainer.Add(new Label(node.nodeType.ToString()));
-
-        nodeEditor.SetPosition(new Rect(10, 30, 300, 400));
-        nodeEditor.title = "Node Editor";
-
-        TextField nameInput = new TextField();
-        nameInput.name = "Node Name";
-        nameInput.value = node.nodeName;
-        nameInput.RegisterValueChangedCallback(evt => node.ChangeName(evt.newValue));
-        nodeEditor.contentContainer.Add(nameInput);
-
-        TextField textInput = new TextField();
-        textInput.name = "Text";
-        textInput.value = node.dialogueText.engText;
-
-        textInput.RegisterValueChangedCallback(evt => node.UpdateText(evt.newValue));
-        nodeEditor.contentContainer.Add(textInput);
-
-        RefreshNode(node);
-
-        AddElement(nodeEditor);
-    }
-
-    public void SaveNodeChanges()
-    {
-
     }
 }

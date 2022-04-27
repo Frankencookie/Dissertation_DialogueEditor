@@ -112,7 +112,7 @@ public class DialogueGraph : EditorWindow
                 nodeName = "Player Node";
                 break;
             case ENodeType.RANDOM:
-                nodeName = "Random Node";
+                nodeName = "Random";
                 break;
             default:
                 break;

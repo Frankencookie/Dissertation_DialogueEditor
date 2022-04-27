@@ -11,7 +11,7 @@ public class DialogueNodeBase
     public bool entry = false;
     public LocalisableText dialogueText;
     public int eventID;
-    public List<DialogueNodeBase> ConnectedNodes = new List<DialogueNodeBase>();
+    public List<string> ConnectedNodes = new List<string>();
     public Vector2 locationOnGraph;
 
     public Vector2 GetGraphPos()

@@ -17,11 +17,13 @@ public class NodeInspector : EditorWindow
 {
     public static EditorNodeBase nodeToEdit;
     public static ENodeType typeOfNode;
+    public static DialogueGraphView _graphView;
 
-    public static void Init(EditorNodeBase toEdit)
+    public static void Init(EditorNodeBase toEdit, DialogueGraphView graphView)
     {
         nodeToEdit = toEdit;
         typeOfNode = toEdit.nodeType;
+        _graphView = graphView;
         NodeInspector nodeInspector = (NodeInspector)EditorWindow.GetWindow(typeof(NodeInspector));
         nodeInspector.Show();
     }
@@ -54,9 +56,29 @@ public class NodeInspector : EditorWindow
 
         EditorGUILayout.Separator();
 
-        //nodeToEdit.UpdateText(EditorGUILayout.TextField("Dialogue Text", nodeToEdit.dialogueText.engText));
-        GUILayout.Label("Dialogue Text", EditorStyles.boldLabel);
-        nodeToEdit.UpdateText(EditorGUILayout.TextArea(nodeToEdit.dialogueText.engText, GUILayout.Height(100)));
+        if(nodeToEdit.nodeType != ENodeType.RANDOM)
+        {
+            //nodeToEdit.UpdateText(EditorGUILayout.TextField("Dialogue Text", nodeToEdit.dialogueText.engText));
+            GUILayout.Label("Dialogue Text", EditorStyles.boldLabel);
+            nodeToEdit.UpdateText(EditorGUILayout.TextArea(nodeToEdit.dialogueText.engText, GUILayout.Height(100)));
+        }
+
+
+        EditorGUILayout.Separator();
+
+        switch(nodeToEdit.nodeType)
+        {
+            case ENodeType.RANDOM:
+                if(GUILayout.Button("Add new Option"))
+                {
+                    _graphView.AddPort(nodeToEdit);
+                }
+                if(GUILayout.Button("Remove Option"))
+                {
+                    _graphView.RemoveLastPort(nodeToEdit);
+                }
+                break;
+        }
 
     }
 }

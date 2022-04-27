@@ -13,58 +13,125 @@ MonoBehaviour:
   m_Name: sample
   m_EditorClassIdentifier: 
   nodes:
-  - GUID: 7c11759e-103b-4caf-ad81-4af293507c62
+  - GUID: 693c7641-fdf9-4908-a348-c262a9afdc1d
     nodeName: Entry
     nodeType: 1
     entry: 1
     dialogueText:
       engText: 
+    eventID: 0
     ConnectedNodes:
-    - GUID: 435482bc-b91a-4ea6-aef5-55f21636143e
-      nodeName: Intro
-      nodeType: 2
-      entry: 0
-      dialogueText:
-        engText: Whats up guys my name is Henry
-      ConnectedNodes:
-      - GUID: a101385a-b1de-4a1b-929b-819bed950599
-        nodeName: Job
-        nodeType: 2
-        entry: 0
-        dialogueText:
-          engText: I am a potion seller, what can i get you today?
-        ConnectedNodes: []
-        locationOnGraph: {x: 505, y: 303}
-      locationOnGraph: {x: 299, y: 257}
+    - 6be327d9-fce9-4fe8-ab33-c398399d3b22
     locationOnGraph: {x: 100, y: 200}
-  - GUID: 435482bc-b91a-4ea6-aef5-55f21636143e
-    nodeName: Intro
+  - GUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
+    nodeName: Intro1
     nodeType: 2
     entry: 0
     dialogueText:
-      engText: Whats up guys my name is Henry
+      engText: Hello!
+    eventID: 0
     ConnectedNodes:
-    - GUID: a101385a-b1de-4a1b-929b-819bed950599
-      nodeName: Job
-      nodeType: 2
-      entry: 0
-      dialogueText:
-        engText: I am a potion seller, what can i get you today?
-      ConnectedNodes: []
-      locationOnGraph: {x: 505, y: 303}
-    locationOnGraph: {x: 299, y: 257}
-  - GUID: a101385a-b1de-4a1b-929b-819bed950599
+    - 7a88bec7-5714-4692-a2f9-5637431885b6
+    locationOnGraph: {x: 519, y: 109}
+  - GUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
+    nodeName: Intro2
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Welcome!
+    eventID: 0
+    ConnectedNodes:
+    - 7a88bec7-5714-4692-a2f9-5637431885b6
+    locationOnGraph: {x: 517, y: 226}
+  - GUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
+    nodeName: Intro3
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Oh my, a visitor!
+    eventID: 0
+    ConnectedNodes:
+    - 7a88bec7-5714-4692-a2f9-5637431885b6
+    locationOnGraph: {x: 517, y: 360}
+  - GUID: 7a88bec7-5714-4692-a2f9-5637431885b6
     nodeName: Job
     nodeType: 2
     entry: 0
     dialogueText:
-      engText: I am a potion seller, what can i get you today?
+      engText: I am a potion seller!
+    eventID: 0
+    ConnectedNodes:
+    - 0d3897fe-cf87-40ee-a888-2a184a2e4395
+    locationOnGraph: {x: 700, y: 226}
+  - GUID: 5979342e-752a-426e-b7a6-15294adeff2b
+    nodeName: Outro2
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Buy something!
+    eventID: 0
     ConnectedNodes: []
-    locationOnGraph: {x: 505, y: 303}
+    locationOnGraph: {x: 1085, y: 327}
+  - GUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
+    nodeName: Outro1
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: I'm sure I have something you'll like
+    eventID: 0
+    ConnectedNodes: []
+    locationOnGraph: {x: 1085, y: 200}
+  - GUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    nodeName: Random Greeting
+    nodeType: 4
+    entry: 0
+    dialogueText:
+      engText: Sample Text
+    eventID: 0
+    ConnectedNodes:
+    - 53a26726-fb0f-45ae-a518-bab37a2bcac1
+    - 3f1210e1-9c93-4590-82a1-a9a817d03f18
+    - 203e2684-28cb-4b20-8b5e-3b46accf8105
+    locationOnGraph: {x: 249, y: 200}
+  - GUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
+    nodeName: Random Outro
+    nodeType: 4
+    entry: 0
+    dialogueText:
+      engText: Sample Text
+    eventID: 0
+    ConnectedNodes:
+    - 7871680e-a3c7-40a7-a845-2115adcaf0d7
+    - 5979342e-752a-426e-b7a6-15294adeff2b
+    locationOnGraph: {x: 863, y: 226}
   linkData:
-  - BaseNodeGUID: 7c11759e-103b-4caf-ad81-4af293507c62
+  - BaseNodeGUID: 693c7641-fdf9-4908-a348-c262a9afdc1d
     PortName: Out
-    TargetNodeGUID: 435482bc-b91a-4ea6-aef5-55f21636143e
-  - BaseNodeGUID: 435482bc-b91a-4ea6-aef5-55f21636143e
+    TargetNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
     PortName: Out
-    TargetNodeGUID: a101385a-b1de-4a1b-929b-819bed950599
+    TargetNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
+  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    PortName: ExtraPort
+    TargetNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
+  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    PortName: ExtraPort
+    TargetNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
+  - BaseNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
+    PortName: Out
+    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
+  - BaseNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
+    PortName: Out
+    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
+  - BaseNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
+    PortName: Out
+    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
+  - BaseNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
+    PortName: Out
+    TargetNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
+  - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
+    PortName: Out
+    TargetNodeGUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
+  - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
+    PortName: ExtraPort
+    TargetNodeGUID: 5979342e-752a-426e-b7a6-15294adeff2b

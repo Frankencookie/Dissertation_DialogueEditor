@@ -188,7 +188,7 @@ public class GraphSaver
         newNode.nodeName = inNode.nodeName;
         newNode.locationOnGraph = inNode.GetPosition().position;
         newNode.eventID = inNode.eventID_editor;
-
+        //newNode.ConnectedNodes = inNode.connectedNodes;
         container.nodes.Add(newNode);
     }
 
@@ -218,15 +218,19 @@ public class GraphSaver
                 }
             }
 
+            outDiagNode.ConnectedNodes.Add(inDiagNode.GUID);
+
+
+            /*
             switch(outDiagNode.nodeType)
             {
                 case ENodeType.EMPTY:
                     break;
                 case ENodeType.ENTRY:
-                    (outDiagNode as EntryNode).ConnectedNodes.Add(inDiagNode);
+                    (outDiagNode as EntryNode).ConnectedNodes.Add(inDiagNode.GUID);
                     break;
                 case ENodeType.SPEAK:
-                    (outDiagNode as SpeakNode).ConnectedNodes.Add(inDiagNode);
+                    (outDiagNode as SpeakNode).ConnectedNodes.Add(inDiagNode.GUID);
                     break;
                 case ENodeType.PLAYER:
                     break;
@@ -235,6 +239,7 @@ public class GraphSaver
                 default:
                     break;
             }
+            */
         }
     }
 

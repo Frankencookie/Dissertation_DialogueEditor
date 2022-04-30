@@ -96,10 +96,19 @@ public class DialogueGraphView : GraphView
         }
         
         //Create Default Output Port
-        Port outputPort = CreatePort(newNode, Direction.Output);
-        outputPort.portName = "Out";
-        newNode.outputContainer.Add(outputPort);
-        if(newNode.nodeType != ENodeType.RANDOM)
+        if(newNode.nodeType != ENodeType.PLAYER)
+        {
+            Port outputPort = CreatePort(newNode, Direction.Output);
+            outputPort.portName = "Out";
+            newNode.outputContainer.Add(outputPort);
+        }
+        else
+        {
+
+        }
+
+        //If a speak node, add text preview
+        if(newNode.nodeType == ENodeType.SPEAK)
         {
             Label textPreview = new Label(newNode.dialogueText.engText);
             newNode.previewText = textPreview;
@@ -149,6 +158,16 @@ public class DialogueGraphView : GraphView
         node.outputContainer.Add(newport);
 
         RefreshNode(node);
+    }
+
+    public Port AddChoicePort(EditorNodeBase node)
+    {
+        Port newport = CreatePort(node, Direction.Output);
+
+        node.outputContainer.Add(newport);
+        RefreshNode(node);
+
+        return newport;
     }
 
     public void RemovePort(EditorNodeBase node, Port portToRemove)

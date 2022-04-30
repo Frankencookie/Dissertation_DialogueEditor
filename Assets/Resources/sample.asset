@@ -63,24 +63,6 @@ MonoBehaviour:
     ConnectedNodes:
     - 0d3897fe-cf87-40ee-a888-2a184a2e4395
     locationOnGraph: {x: 700, y: 226}
-  - GUID: 5979342e-752a-426e-b7a6-15294adeff2b
-    nodeName: Outro2
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: Buy something!
-    eventID: 0
-    ConnectedNodes: []
-    locationOnGraph: {x: 1085, y: 327}
-  - GUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
-    nodeName: Outro1
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: I'm sure I have something you'll like
-    eventID: 0
-    ConnectedNodes: []
-    locationOnGraph: {x: 1085, y: 200}
   - GUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
     nodeName: Random Greeting
     nodeType: 4
@@ -90,8 +72,8 @@ MonoBehaviour:
     eventID: 0
     ConnectedNodes:
     - 53a26726-fb0f-45ae-a518-bab37a2bcac1
-    - 3f1210e1-9c93-4590-82a1-a9a817d03f18
     - 203e2684-28cb-4b20-8b5e-3b46accf8105
+    - 3f1210e1-9c93-4590-82a1-a9a817d03f18
     locationOnGraph: {x: 249, y: 200}
   - GUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
     nodeName: Random Outro
@@ -104,6 +86,24 @@ MonoBehaviour:
     - 7871680e-a3c7-40a7-a845-2115adcaf0d7
     - 5979342e-752a-426e-b7a6-15294adeff2b
     locationOnGraph: {x: 863, y: 226}
+  - GUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
+    nodeName: Outro1
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: How may i help you
+    eventID: 0
+    ConnectedNodes: []
+    locationOnGraph: {x: 1085, y: 200}
+  - GUID: 5979342e-752a-426e-b7a6-15294adeff2b
+    nodeName: Outro2
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: What can i do for you
+    eventID: 0
+    ConnectedNodes: []
+    locationOnGraph: {x: 1085, y: 327}
   linkData:
   - BaseNodeGUID: 693c7641-fdf9-4908-a348-c262a9afdc1d
     PortName: Out
@@ -111,12 +111,6 @@ MonoBehaviour:
   - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
     PortName: Out
     TargetNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
-  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
-    PortName: ExtraPort
-    TargetNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
-  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
-    PortName: ExtraPort
-    TargetNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
   - BaseNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
     PortName: Out
     TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
@@ -132,6 +126,12 @@ MonoBehaviour:
   - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
     PortName: Out
     TargetNodeGUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
+  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    PortName: ExtraPort
+    TargetNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
+  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    PortName: ExtraPort
+    TargetNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
   - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
     PortName: ExtraPort
     TargetNodeGUID: 5979342e-752a-426e-b7a6-15294adeff2b

@@ -17,9 +17,11 @@ public class EditorNodeBase : Node
     public bool entry = false;
     public DialogueGraphView graphView;
     public int eventID_editor = 0;
+    public List<EdDialogueChoice> choices = new List<EdDialogueChoice>();
 
     public Label previewText;
     protected int previewLength = 25;
+    protected int choicePreviewLength = 15;
 
     public override void OnSelected()
     {
@@ -41,6 +43,10 @@ public class EditorNodeBase : Node
 
     public void UpdateText(string newText)
     {
+        if(nodeType != ENodeType.SPEAK)
+        {
+            return;
+        }
         dialogueText.engText = newText;
         if (newText.Length > previewLength)
         {
@@ -51,6 +57,38 @@ public class EditorNodeBase : Node
             previewText.text = newText;
         }
         previewText.MarkDirtyRepaint();
+        MarkDirtyRepaint();
+    }
+
+    public void AddNewPlayerChoice(string choiceText = "New Choice")
+    {
+        EdDialogueChoice newChoice = new EdDialogueChoice();
+        choices.Add(newChoice);
+        newChoice.dialogueText.engText = choiceText;
+
+        newChoice.previewLabel = new Label(choiceText);
+        newChoice.port = graphView.AddChoicePort(this);
+        newChoice.port.portName = choiceText;
+    }
+
+    public void RemovePlayerChoice()
+    {
+        
+    }
+
+    public void UpdatePlayerChoice(string newText, int index)
+    {
+        choices[index].dialogueText.engText = newText;
+        if (newText.Length > choicePreviewLength)
+        {
+            choices[index].port.portName = newText.Substring(0, choicePreviewLength);
+        }
+        else
+        {
+            choices[index].port.portName = newText;
+        }
+
+        choices[index].port.MarkDirtyRepaint();
         MarkDirtyRepaint();
     }
 }
@@ -72,11 +110,14 @@ public class EdSpeakNode : EditorNodeBase
 
 public class EdPlayerNode : EditorNodeBase
 {
-    public EdDialogueChoices[] Choices;
+    //public EdDialogueChoices[] Choices;
 }
 
-public class EdDialogueChoices
+public class EdDialogueChoice
 {
-    public LocalisableText dialogueText;
+    public LocalisableText dialogueText = new LocalisableText();
     public string connectedNode;
+    public Label previewLabel;
+    public Port port;
+
 }

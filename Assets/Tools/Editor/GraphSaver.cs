@@ -92,6 +92,7 @@ public class GraphSaver
             EditorNodeBase newNode = _graphView.CreateNode(nodeToLoad.nodeName, nodeToLoad.nodeType, nodeToLoad.GetGraphPos());
             newNode.GUID = nodeToLoad.GUID;
             newNode.dialogueText = nodeToLoad.dialogueText;
+            newNode.UpdateText(newNode.dialogueText.engText);
             _graphView.AddElement(newNode);
             _graphView.RefreshNode(newNode);
         }
@@ -165,7 +166,7 @@ public class GraphSaver
             case ENodeType.PLAYER:
                 newNode = new PlayerNode();
 
-                foreach(EdDialogueChoices choice in (inNode as EdPlayerNode).Choices)
+                foreach(EdDialogueChoice choice in inNode.choices)
                 {
                     (newNode as PlayerNode).choices.Add(new DialogueNodeChoice
                     {
@@ -188,7 +189,6 @@ public class GraphSaver
         newNode.nodeName = inNode.nodeName;
         newNode.locationOnGraph = inNode.GetPosition().position;
         newNode.eventID = inNode.eventID_editor;
-        //newNode.ConnectedNodes = inNode.connectedNodes;
         container.nodes.Add(newNode);
     }
 

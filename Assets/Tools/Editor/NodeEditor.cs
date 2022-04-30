@@ -56,16 +56,6 @@ public class NodeInspector : EditorWindow
 
         EditorGUILayout.Separator();
 
-        if(nodeToEdit.nodeType != ENodeType.RANDOM)
-        {
-            //nodeToEdit.UpdateText(EditorGUILayout.TextField("Dialogue Text", nodeToEdit.dialogueText.engText));
-            GUILayout.Label("Dialogue Text", EditorStyles.boldLabel);
-            nodeToEdit.UpdateText(EditorGUILayout.TextArea(nodeToEdit.dialogueText.engText, GUILayout.Height(100)));
-        }
-
-
-        EditorGUILayout.Separator();
-
         switch(nodeToEdit.nodeType)
         {
             case ENodeType.RANDOM:
@@ -74,6 +64,29 @@ public class NodeInspector : EditorWindow
                     _graphView.AddPort(nodeToEdit);
                 }
                 if(GUILayout.Button("Remove Option"))
+                {
+                    _graphView.RemoveLastPort(nodeToEdit);
+                }
+                break;
+            case ENodeType.SPEAK:
+                GUILayout.Label("Dialogue Text", EditorStyles.boldLabel);
+                nodeToEdit.UpdateText(EditorGUILayout.TextArea(nodeToEdit.dialogueText.engText, GUILayout.Height(100)));
+                break;
+
+            case ENodeType.PLAYER:
+                //Display all text fields
+                Debug.Log(nodeToEdit.choices.Count);
+                for(int i = 0; i < nodeToEdit.choices.Count; i++)
+                {
+                    GUILayout.Label("Choice " + i, EditorStyles.boldLabel);
+                    nodeToEdit.UpdatePlayerChoice(EditorGUILayout.TextArea(nodeToEdit.choices[i].dialogueText.engText, GUILayout.Height(100)), i);
+                }
+                //Add and remove field buttons
+                if(GUILayout.Button("Add New Choice"))
+                {
+                    nodeToEdit.AddNewPlayerChoice();
+                }
+                if(GUILayout.Button("Remove Choice"))
                 {
                     _graphView.RemoveLastPort(nodeToEdit);
                 }

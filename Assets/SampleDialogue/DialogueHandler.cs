@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEditor.Events;
 using TMPro;
 
 public class DialogueHandler : MonoBehaviour
@@ -8,6 +12,9 @@ public class DialogueHandler : MonoBehaviour
     public DialogueHandler self;
     public TextMeshProUGUI spokenTextComponent;
     public GameObject dialogueOptionPrefab;
+    public GameObject dialogueOptionParent;
+    public string dialogueOptionTextObjectName;
+    public List<GameObject> dialogueOptions = new List<GameObject>();
     public DialogueContainerSO dialogueObject;
     float currentTime = 0;
     float changeTime = 3;
@@ -54,15 +61,26 @@ public class DialogueHandler : MonoBehaviour
 
     public void GetRandomNode()
     {
-        Debug.Log(currentNode.ConnectedNodes.Count);
         int RandomNumber = Random.Range(0, currentNode.ConnectedNodes.Count);
-        Debug.Log(RandomNumber);
         currentNode = FindNodeByGUID(currentNode.ConnectedNodes[RandomNumber]);
         ProcessNextNode();
     }
 
     public void ProcessNextNode()
     {
+        //Make the spoken text appear if hidden
+        spokenTextComponent.enabled = true;
+
+        //If dialogue options are on the screen, get rid of them
+        if(dialogueOptions.Count > 0)
+        {
+            for(int i = 0; i < dialogueOptions.Count; i++)
+            {
+                Destroy(dialogueOptions[i]);
+            }
+            dialogueOptions.Clear();
+        }
+
         switch(currentNode.nodeType)
         {
             case ENodeType.SPEAK:
@@ -71,7 +89,30 @@ public class DialogueHandler : MonoBehaviour
             case ENodeType.RANDOM:
                 GetRandomNode();
                 return;
+            case ENodeType.PLAYER:
+                //Hide the spoken text object
+                spokenTextComponent.enabled = false;
+                int number = 0;
+                //Get All choices and add them
+                foreach (var item in currentNode.choices)
+                {
+                    GameObject newItem = Instantiate(dialogueOptionPrefab, Vector3.zero, Quaternion.identity, dialogueOptionParent.transform);
+                    newItem.transform.Find(dialogueOptionTextObjectName).GetComponent<TextMeshProUGUI>().text = item.dialogueText.engText;
+                    //newItem.GetComponent<Button>().onClick
+                    UnityEventTools.AddIntPersistentListener(newItem.GetComponent<Button>().onClick, new UnityAction<int>(OptionChosen), number);
+                    dialogueOptions.Add(newItem);
+                    number++;
+                }
+                break;
             }
+    }
+
+    public void OptionChosen(int id)
+    {
+        Debug.Log(id);
+        currentNode = FindNodeByGUID(currentNode.choices[id].connectedNode);
+        currentTime = 0;
+        ProcessNextNode();
     }
 
     public void BeginDialogue()

@@ -12,6 +12,7 @@ public class DialogueNodeBase
     public LocalisableText dialogueText;
     public int eventID;
     public List<string> ConnectedNodes = new List<string>();
+    public List<DialogueNodeChoice> choices = new List<DialogueNodeChoice>();
     public Vector2 locationOnGraph;
 
     public Vector2 GetGraphPos()
@@ -38,13 +39,15 @@ public class SpeakNode : DialogueNodeBase
 
 public class PlayerNode : DialogueNodeBase
 {
-    public List<DialogueNodeChoice> choices;
+    
 }
 
+[System.Serializable]
 public class DialogueNodeChoice
 {
     public LocalisableText dialogueText;
-    public DialogueNodeBase connectedNode;
+    public string connectedNode;
+    public string portName;
 }
 
 public enum ENodeType

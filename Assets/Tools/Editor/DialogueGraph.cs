@@ -9,6 +9,7 @@ using UnityEditor.UIElements;
 public class DialogueGraph : EditorWindow
 {
     private DialogueGraphView graphView;
+    private string fileName = "NewFile";
 
     [MenuItem("Window/Dialogue Editor")]
     public static void OpenGraphWindow()
@@ -21,30 +22,6 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraphView();
         GenerateToolbar();
-        //GenerateMiniMap();
-        //CreateEditor();
-        //StartupPrompt();
-    }
-
-    private void GenerateMiniMap()
-    {
-        MiniMap miniMap = new MiniMap();
-        miniMap.anchored = true;
-
-        Vector2 pos = graphView.contentViewContainer.WorldToLocal(new Vector2(this.maxSize.x - 10, 300));
-        miniMap.SetPosition(new Rect(pos.x, pos.y, 200, 140));
-        graphView.Add(miniMap);
-    }
-
-    private void CreateEditor()
-    {
-        NodeEditor editor = new NodeEditor();
-        editor.SetPosition(new Rect(10, 30, 300, 400));
-        editor.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
-        editor.title = "Node Editor";
-
-        editor.RefreshExpandedState();
-        graphView.AddElement(editor);
     }
 
     private void ConstructGraphView()
@@ -75,19 +52,25 @@ public class DialogueGraph : EditorWindow
 
         toolBar.Add(new Button(() => LoadGraph()){text = "Load"});
 
+        TextField fileNameField = new TextField("Name: ");
+        fileNameField.SetValueWithoutNotify(fileName);
+        fileNameField.MarkDirtyRepaint();
+        fileNameField.RegisterValueChangedCallback(evt => fileName = evt.newValue);
+        toolBar.Add(fileNameField);
+
         rootVisualElement.Add(toolBar);
     }
 
     private void SaveGraph()
     {
         GraphSaver saver = GraphSaver.GetInstance(graphView);
-        saver.SaveGraph("sample");
+        saver.SaveGraph(fileName);
     }
 
     private void LoadGraph()
     {
         GraphSaver saver = GraphSaver.GetInstance(graphView);
-        saver.LoadGraph("sample");
+        saver.LoadGraph(fileName);
     }
 
     private void StartupPrompt()

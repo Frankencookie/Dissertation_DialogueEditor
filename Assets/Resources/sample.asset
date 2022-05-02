@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: sample
   m_EditorClassIdentifier: 
   nodes:
-  - GUID: 693c7641-fdf9-4908-a348-c262a9afdc1d
+  - GUID: 81fd5687-6e7f-47f5-acfc-6a0ac97ebf8d
     nodeName: Entry
     nodeType: 1
     entry: 1
@@ -21,39 +21,43 @@ MonoBehaviour:
       engText: 
     eventID: 0
     ConnectedNodes:
-    - 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    - 436a944c-1602-4a61-bc8d-9f1417f2b27e
+    choices: []
     locationOnGraph: {x: 100, y: 200}
-  - GUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
+  - GUID: 7ac8f96e-9fa6-424c-8f55-4f6c92cd7373
     nodeName: Intro1
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: Hello!
-    eventID: 0
-    ConnectedNodes:
-    - 7a88bec7-5714-4692-a2f9-5637431885b6
-    locationOnGraph: {x: 519, y: 109}
-  - GUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
-    nodeName: Intro2
     nodeType: 2
     entry: 0
     dialogueText:
       engText: Welcome!
     eventID: 0
     ConnectedNodes:
-    - 7a88bec7-5714-4692-a2f9-5637431885b6
-    locationOnGraph: {x: 517, y: 226}
-  - GUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
-    nodeName: Intro3
+    - f7630106-336b-4164-b531-d1b4d2b51309
+    choices: []
+    locationOnGraph: {x: 530, y: 130}
+  - GUID: f36e33a5-e5ee-4371-baa5-9ee26ce5ce6b
+    nodeName: Intro2
     nodeType: 2
     entry: 0
     dialogueText:
-      engText: Oh my, a visitor!
+      engText: Hello!
     eventID: 0
     ConnectedNodes:
-    - 7a88bec7-5714-4692-a2f9-5637431885b6
-    locationOnGraph: {x: 517, y: 360}
-  - GUID: 7a88bec7-5714-4692-a2f9-5637431885b6
+    - f7630106-336b-4164-b531-d1b4d2b51309
+    choices: []
+    locationOnGraph: {x: 528, y: 277}
+  - GUID: f7630106-336b-4164-b531-d1b4d2b51309
+    nodeName: Question
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: How can I help you today?
+    eventID: 0
+    ConnectedNodes:
+    - e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    choices: []
+    locationOnGraph: {x: 754, y: 210}
+  - GUID: 68a98f6a-c0dc-4227-9133-f2a4129e9802
     nodeName: Job
     nodeType: 2
     entry: 0
@@ -61,77 +65,102 @@ MonoBehaviour:
       engText: I am a potion seller!
     eventID: 0
     ConnectedNodes:
-    - 0d3897fe-cf87-40ee-a888-2a184a2e4395
-    locationOnGraph: {x: 700, y: 226}
-  - GUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
-    nodeName: Random Greeting
+    - e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    choices: []
+    locationOnGraph: {x: 1301, y: 23}
+  - GUID: f3945f6f-4ef3-452c-adc0-bc71c6a3cc77
+    nodeName: Potions
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Potions of course!
+    eventID: 0
+    ConnectedNodes:
+    - e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    choices: []
+    locationOnGraph: {x: 1301, y: 176}
+  - GUID: a0f18605-e653-4740-a6bc-778cdf4fdfe9
+    nodeName: No
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: No
+    eventID: 0
+    ConnectedNodes:
+    - e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    choices: []
+    locationOnGraph: {x: 1301, y: 290}
+  - GUID: 436a944c-1602-4a61-bc8d-9f1417f2b27e
+    nodeName: RanIntro
     nodeType: 4
     entry: 0
     dialogueText:
       engText: Sample Text
     eventID: 0
     ConnectedNodes:
-    - 53a26726-fb0f-45ae-a518-bab37a2bcac1
-    - 203e2684-28cb-4b20-8b5e-3b46accf8105
-    - 3f1210e1-9c93-4590-82a1-a9a817d03f18
-    locationOnGraph: {x: 249, y: 200}
-  - GUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
-    nodeName: Random Outro
-    nodeType: 4
+    - 7ac8f96e-9fa6-424c-8f55-4f6c92cd7373
+    - f36e33a5-e5ee-4371-baa5-9ee26ce5ce6b
+    choices: []
+    locationOnGraph: {x: 300, y: 200}
+  - GUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    nodeName: Choice
+    nodeType: 3
     entry: 0
     dialogueText:
       engText: Sample Text
     eventID: 0
     ConnectedNodes:
-    - 7871680e-a3c7-40a7-a845-2115adcaf0d7
-    - 5979342e-752a-426e-b7a6-15294adeff2b
-    locationOnGraph: {x: 863, y: 226}
-  - GUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
-    nodeName: Outro1
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: How may i help you
-    eventID: 0
-    ConnectedNodes: []
-    locationOnGraph: {x: 1085, y: 200}
-  - GUID: 5979342e-752a-426e-b7a6-15294adeff2b
-    nodeName: Outro2
-    nodeType: 2
-    entry: 0
-    dialogueText:
-      engText: What can i do for you
-    eventID: 0
-    ConnectedNodes: []
-    locationOnGraph: {x: 1085, y: 327}
+    - 68a98f6a-c0dc-4227-9133-f2a4129e9802
+    - f3945f6f-4ef3-452c-adc0-bc71c6a3cc77
+    - a0f18605-e653-4740-a6bc-778cdf4fdfe9
+    choices:
+    - dialogueText:
+        engText: Who are you
+      connectedNode: 68a98f6a-c0dc-4227-9133-f2a4129e9802
+      portName: Who are you
+    - dialogueText:
+        engText: What do you sell
+      connectedNode: f3945f6f-4ef3-452c-adc0-bc71c6a3cc77
+      portName: What do you sel
+    - dialogueText:
+        engText: Do you have any gossip
+      connectedNode: a0f18605-e653-4740-a6bc-778cdf4fdfe9
+      portName: Do you have any
+    locationOnGraph: {x: 987, y: 210}
   linkData:
-  - BaseNodeGUID: 693c7641-fdf9-4908-a348-c262a9afdc1d
+  - BaseNodeGUID: 81fd5687-6e7f-47f5-acfc-6a0ac97ebf8d
     PortName: Out
-    TargetNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
-  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    TargetNodeGUID: 436a944c-1602-4a61-bc8d-9f1417f2b27e
+  - BaseNodeGUID: 7ac8f96e-9fa6-424c-8f55-4f6c92cd7373
     PortName: Out
-    TargetNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
-  - BaseNodeGUID: 53a26726-fb0f-45ae-a518-bab37a2bcac1
+    TargetNodeGUID: f7630106-336b-4164-b531-d1b4d2b51309
+  - BaseNodeGUID: f36e33a5-e5ee-4371-baa5-9ee26ce5ce6b
     PortName: Out
-    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
-  - BaseNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
+    TargetNodeGUID: f7630106-336b-4164-b531-d1b4d2b51309
+  - BaseNodeGUID: f7630106-336b-4164-b531-d1b4d2b51309
     PortName: Out
-    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
-  - BaseNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
+    TargetNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+  - BaseNodeGUID: 436a944c-1602-4a61-bc8d-9f1417f2b27e
     PortName: Out
-    TargetNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
-  - BaseNodeGUID: 7a88bec7-5714-4692-a2f9-5637431885b6
-    PortName: Out
-    TargetNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
-  - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
-    PortName: Out
-    TargetNodeGUID: 7871680e-a3c7-40a7-a845-2115adcaf0d7
-  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
+    TargetNodeGUID: 7ac8f96e-9fa6-424c-8f55-4f6c92cd7373
+  - BaseNodeGUID: 436a944c-1602-4a61-bc8d-9f1417f2b27e
     PortName: ExtraPort
-    TargetNodeGUID: 203e2684-28cb-4b20-8b5e-3b46accf8105
-  - BaseNodeGUID: 6be327d9-fce9-4fe8-ab33-c398399d3b22
-    PortName: ExtraPort
-    TargetNodeGUID: 3f1210e1-9c93-4590-82a1-a9a817d03f18
-  - BaseNodeGUID: 0d3897fe-cf87-40ee-a888-2a184a2e4395
-    PortName: ExtraPort
-    TargetNodeGUID: 5979342e-752a-426e-b7a6-15294adeff2b
+    TargetNodeGUID: f36e33a5-e5ee-4371-baa5-9ee26ce5ce6b
+  - BaseNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    PortName: Who are you
+    TargetNodeGUID: 68a98f6a-c0dc-4227-9133-f2a4129e9802
+  - BaseNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    PortName: What do you sel
+    TargetNodeGUID: f3945f6f-4ef3-452c-adc0-bc71c6a3cc77
+  - BaseNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+    PortName: Do you have any
+    TargetNodeGUID: a0f18605-e653-4740-a6bc-778cdf4fdfe9
+  - BaseNodeGUID: 68a98f6a-c0dc-4227-9133-f2a4129e9802
+    PortName: Out
+    TargetNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+  - BaseNodeGUID: f3945f6f-4ef3-452c-adc0-bc71c6a3cc77
+    PortName: Out
+    TargetNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40
+  - BaseNodeGUID: a0f18605-e653-4740-a6bc-778cdf4fdfe9
+    PortName: Out
+    TargetNodeGUID: e96da60d-35b4-4ccc-bfc6-ac37f94e0b40

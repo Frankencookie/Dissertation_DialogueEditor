@@ -79,14 +79,18 @@ public class EditorNodeBase : Node
     public void UpdatePlayerChoice(string newText, int index)
     {
         choices[index].dialogueText.engText = newText;
+        string portNameText;
         if (newText.Length > choicePreviewLength)
         {
-            choices[index].port.portName = newText.Substring(0, choicePreviewLength);
+            portNameText = newText.Substring(0, choicePreviewLength);
         }
         else
         {
-            choices[index].port.portName = newText;
+            portNameText = newText;
         }
+        choices[index].port.portName = portNameText;
+
+        choices[index].portName = portNameText;
 
         choices[index].port.MarkDirtyRepaint();
         MarkDirtyRepaint();
@@ -119,5 +123,5 @@ public class EdDialogueChoice
     public string connectedNode;
     public Label previewLabel;
     public Port port;
-
+    public string portName;
 }

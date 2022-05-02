@@ -56,6 +56,11 @@ public class GraphSaver
     {
         _dialogueContainer = Resources.Load<DialogueContainerSO>(fileName);
 
+        if(_dialogueContainer == null)
+        {
+            return;
+        }
+
         ClearGraph();
         GenerateNodes();
         ConnectNodes();
@@ -168,9 +173,11 @@ public class GraphSaver
 
                 foreach(EdDialogueChoice choice in inNode.choices)
                 {
-                    (newNode as PlayerNode).choices.Add(new DialogueNodeChoice
+                    Debug.Log(choice.dialogueText.engText);
+                    newNode.choices.Add(new DialogueNodeChoice
                     {
-                        dialogueText = choice.dialogueText
+                        dialogueText = choice.dialogueText,
+                        portName = choice.portName
                     });
                 }
 
@@ -219,6 +226,18 @@ public class GraphSaver
             }
 
             outDiagNode.ConnectedNodes.Add(inDiagNode.GUID);
+
+            if(outNode.nodeType == ENodeType.PLAYER)
+            {
+                foreach (var item in outDiagNode.choices)
+                {
+                    if(connectedEdges[i].output.portName == item.portName)
+                    {
+                        item.connectedNode = inNode.GUID;
+                    }
+                    
+                }
+            }
 
 
             /*

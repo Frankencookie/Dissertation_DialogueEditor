@@ -131,11 +131,26 @@ public class GraphSaver
             Edge newEdge = new Edge()
             {
                 //input = Nodes.First(x => x.GUID == item.TargetNodeGUID),
-                input = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.TargetNodeGUID).inputContainer[0].Q<Port>(),
+                input = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.TargetNodeGUID).inputContainer[0].Q<Port>()
                 //output = _graphView.GetNodeByGuid(item.BaseNodeGUID).outputContainer[0].Q<Port>()
-                output = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.BaseNodeGUID).outputContainer[0].Q<Port>()
+                //output = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.BaseNodeGUID).outputContainer[0].Q<Port>()
             };
+            
+            
+            Port newOutput = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.BaseNodeGUID).outputContainer[0].Q<Port>();
+            int i = 1;
+            while(newOutput.connected == true && i < 100)
+            {
+                newOutput = _graphView.nodes.ToList().Cast<EditorNodeBase>().ToList().First(x => x.GUID == item.BaseNodeGUID).outputContainer[i].Q<Port>();
+                i++;
+            }
+            if(newOutput.connected == true)
+            {
+                Debug.Log("Something broke");
+                return;
+            }
 
+            newEdge.output = newOutput;
             newEdge.input.Connect(newEdge);
             newEdge.output.Connect(newEdge);
             _graphView.Add(newEdge);

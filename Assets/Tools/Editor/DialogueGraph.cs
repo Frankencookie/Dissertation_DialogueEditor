@@ -52,7 +52,7 @@ public class DialogueGraph : EditorWindow
 
         toolBar.Add(new Button(() => LoadGraph()){text = "Load"});
 
-        TextField fileNameField = new TextField("Name: ");
+        TextField fileNameField = new TextField();
         fileNameField.SetValueWithoutNotify(fileName);
         fileNameField.MarkDirtyRepaint();
         fileNameField.RegisterValueChangedCallback(evt => fileName = evt.newValue);

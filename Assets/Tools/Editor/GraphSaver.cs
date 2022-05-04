@@ -99,7 +99,28 @@ public class GraphSaver
             newNode.dialogueText = nodeToLoad.dialogueText;
             newNode.UpdateText(newNode.dialogueText.engText);
             _graphView.AddElement(newNode);
+            GenerateOptions(newNode, nodeToLoad);
             _graphView.RefreshNode(newNode);
+        }
+    }
+
+    private void GenerateOptions(EditorNodeBase node, DialogueNodeBase referenceNode)
+    {
+        switch(referenceNode.nodeType)
+        {
+            case ENodeType.RANDOM:
+                for(int i = 1; i < referenceNode.ConnectedNodes.Count; i++)
+                {
+                    _graphView.AddPort(node);
+                }
+                return;
+            case ENodeType.PLAYER:
+                for(int i = 0; i < referenceNode.choices.Count; i++)
+                {
+                    node.AddNewPlayerChoice();
+                    node.UpdatePlayerChoice(referenceNode.choices[i].dialogueText.engText, i);
+                }
+                return;
         }
     }
 

@@ -1,0 +1,308 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c1d80b1e43e3d4dbbef69deb05ab5a, type: 3}
+  m_Name: testDialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - GUID: e36c49e1-12a9-45fb-b5b6-ef1cd0ac6650
+    nodeName: Entry
+    nodeType: 1
+    entry: 1
+    dialogueText:
+      engText: 
+    eventID: 0
+    ConnectedNodes:
+    - 75b4f50d-1762-4522-a1cc-026d819c6b4a
+    choices: []
+    locationOnGraph: {x: 100, y: 200}
+  - GUID: c70001c0-4c1e-4d9b-a21f-5a7ff5c36224
+    nodeName: Intro1
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Hello!
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 566, y: 109}
+  - GUID: ac797f0d-aa47-40e3-8808-26bff375bf0f
+    nodeName: Intro2
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Welcome
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 566, y: 232}
+  - GUID: 75b4f50d-1762-4522-a1cc-026d819c6b4a
+    nodeName: RandomIntro
+    nodeType: 4
+    entry: 0
+    dialogueText:
+      engText: Sample Text
+    eventID: 0
+    ConnectedNodes:
+    - ac797f0d-aa47-40e3-8808-26bff375bf0f
+    - c70001c0-4c1e-4d9b-a21f-5a7ff5c36224
+    - ca5e493b-bd4c-45ba-8649-4f84da440ee5
+    choices: []
+    locationOnGraph: {x: 292, y: 200}
+  - GUID: ca5e493b-bd4c-45ba-8649-4f84da440ee5
+    nodeName: Intro3
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: now where did i put that....?
+    eventID: 0
+    ConnectedNodes:
+    - fad521f5-b230-4fe2-8c74-543a468dc73b
+    choices: []
+    locationOnGraph: {x: 498, y: 362}
+  - GUID: fad521f5-b230-4fe2-8c74-543a468dc73b
+    nodeName: Intro3 2
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Oh a customer!
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 670, y: 362}
+  - GUID: cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+    nodeName: Player Node
+    nodeType: 3
+    entry: 0
+    dialogueText:
+      engText: Sample Text
+    eventID: 0
+    ConnectedNodes:
+    - 46243d6f-bb48-499a-9171-78dd3c952c6f
+    - c110982f-1c45-440f-aa8f-e20d7b838f58
+    - 5c0a77e8-88a9-43af-a5cb-0db713acf6be
+    choices:
+    - dialogueText:
+        engText: Who are you?
+      connectedNode: 46243d6f-bb48-499a-9171-78dd3c952c6f
+      portName: Who are you?
+    - dialogueText:
+        engText: What do you sell?
+      connectedNode: c110982f-1c45-440f-aa8f-e20d7b838f58
+      portName: What do you sel
+    - dialogueText:
+        engText: Have you heard any jucy gossip?
+      connectedNode: 5c0a77e8-88a9-43af-a5cb-0db713acf6be
+      portName: 'Have you heard '
+    locationOnGraph: {x: 1122, y: 232}
+  - GUID: 46243d6f-bb48-499a-9171-78dd3c952c6f
+    nodeName: Who
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: I am Henry, the potion seller!
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 1401, y: 26}
+  - GUID: c110982f-1c45-440f-aa8f-e20d7b838f58
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: I sell potions!
+    eventID: 0
+    ConnectedNodes:
+    - 71513519-7fa4-48c0-9ba6-37b33cafe8ff
+    choices: []
+    locationOnGraph: {x: 1401, y: 187}
+  - GUID: 71513519-7fa4-48c0-9ba6-37b33cafe8ff
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Big potions, small potions...
+    eventID: 0
+    ConnectedNodes:
+    - e99bfc14-fdd5-472d-a65d-a66ce33635ba
+    choices: []
+    locationOnGraph: {x: 1605, y: 141}
+  - GUID: e99bfc14-fdd5-472d-a65d-a66ce33635ba
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: A potion for every situation!
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 1837, y: 72}
+  - GUID: 4b31e803-ff90-442c-ab4d-35c7907842f8
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Anything specific?
+    eventID: 0
+    ConnectedNodes:
+    - 72bc28f7-f3d3-484f-8f74-86e549eab8b7
+    choices: []
+    locationOnGraph: {x: 1605, y: 357}
+  - GUID: 5c0a77e8-88a9-43af-a5cb-0db713acf6be
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Now let me think....
+    eventID: 0
+    ConnectedNodes:
+    - 4b31e803-ff90-442c-ab4d-35c7907842f8
+    choices: []
+    locationOnGraph: {x: 1401, y: 357}
+  - GUID: 72bc28f7-f3d3-484f-8f74-86e549eab8b7
+    nodeName: Player Node
+    nodeType: 3
+    entry: 0
+    dialogueText:
+      engText: Sample Text
+    eventID: 0
+    ConnectedNodes:
+    - 876af3b0-b6f2-4b58-b45a-c3f267fc8a4c
+    - d1afd12e-189a-4475-bdb1-8d9456d1041a
+    choices:
+    - dialogueText:
+        engText: Anything work related?
+      connectedNode: 876af3b0-b6f2-4b58-b45a-c3f267fc8a4c
+      portName: Anything work r
+    - dialogueText:
+        engText: Any shady talk?
+      connectedNode: d1afd12e-189a-4475-bdb1-8d9456d1041a
+      portName: Any shady talk?
+    locationOnGraph: {x: 1831, y: 357}
+  - GUID: 876af3b0-b6f2-4b58-b45a-c3f267fc8a4c
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Business has been good, no complaints..
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 2086, y: 187}
+  - GUID: d1afd12e-189a-4475-bdb1-8d9456d1041a
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Peter is mad at Adam again
+    eventID: 0
+    ConnectedNodes:
+    - 93d1e997-3dec-4407-b747-f1bea6143918
+    choices: []
+    locationOnGraph: {x: 2086, y: 385}
+  - GUID: 93d1e997-3dec-4407-b747-f1bea6143918
+    nodeName: Speak Node
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Something about not paying rent.. thats all I know
+    eventID: 0
+    ConnectedNodes:
+    - 7d0799b5-e3da-4540-95db-96be89ac2e75
+    choices: []
+    locationOnGraph: {x: 2313, y: 403}
+  - GUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+    nodeName: Question
+    nodeType: 2
+    entry: 0
+    dialogueText:
+      engText: Now, How can i help you today?
+    eventID: 0
+    ConnectedNodes:
+    - cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+    choices: []
+    locationOnGraph: {x: 888, y: 232}
+  linkData:
+  - BaseNodeGUID: e36c49e1-12a9-45fb-b5b6-ef1cd0ac6650
+    PortName: Out
+    TargetNodeGUID: 75b4f50d-1762-4522-a1cc-026d819c6b4a
+  - BaseNodeGUID: 75b4f50d-1762-4522-a1cc-026d819c6b4a
+    PortName: ExtraPort
+    TargetNodeGUID: ac797f0d-aa47-40e3-8808-26bff375bf0f
+  - BaseNodeGUID: 75b4f50d-1762-4522-a1cc-026d819c6b4a
+    PortName: Out
+    TargetNodeGUID: c70001c0-4c1e-4d9b-a21f-5a7ff5c36224
+  - BaseNodeGUID: 75b4f50d-1762-4522-a1cc-026d819c6b4a
+    PortName: ExtraPort
+    TargetNodeGUID: ca5e493b-bd4c-45ba-8649-4f84da440ee5
+  - BaseNodeGUID: c70001c0-4c1e-4d9b-a21f-5a7ff5c36224
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: ac797f0d-aa47-40e3-8808-26bff375bf0f
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: ca5e493b-bd4c-45ba-8649-4f84da440ee5
+    PortName: Out
+    TargetNodeGUID: fad521f5-b230-4fe2-8c74-543a468dc73b
+  - BaseNodeGUID: fad521f5-b230-4fe2-8c74-543a468dc73b
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+    PortName: Out
+    TargetNodeGUID: cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+  - BaseNodeGUID: cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+    PortName: Who are you?
+    TargetNodeGUID: 46243d6f-bb48-499a-9171-78dd3c952c6f
+  - BaseNodeGUID: cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+    PortName: What do you sel
+    TargetNodeGUID: c110982f-1c45-440f-aa8f-e20d7b838f58
+  - BaseNodeGUID: cdf502be-bc0c-4980-b2ab-30fcb6f6690b
+    PortName: 'Have you heard '
+    TargetNodeGUID: 5c0a77e8-88a9-43af-a5cb-0db713acf6be
+  - BaseNodeGUID: c110982f-1c45-440f-aa8f-e20d7b838f58
+    PortName: Out
+    TargetNodeGUID: 71513519-7fa4-48c0-9ba6-37b33cafe8ff
+  - BaseNodeGUID: 71513519-7fa4-48c0-9ba6-37b33cafe8ff
+    PortName: Out
+    TargetNodeGUID: e99bfc14-fdd5-472d-a65d-a66ce33635ba
+  - BaseNodeGUID: e99bfc14-fdd5-472d-a65d-a66ce33635ba
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: 46243d6f-bb48-499a-9171-78dd3c952c6f
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: 5c0a77e8-88a9-43af-a5cb-0db713acf6be
+    PortName: Out
+    TargetNodeGUID: 4b31e803-ff90-442c-ab4d-35c7907842f8
+  - BaseNodeGUID: 4b31e803-ff90-442c-ab4d-35c7907842f8
+    PortName: Out
+    TargetNodeGUID: 72bc28f7-f3d3-484f-8f74-86e549eab8b7
+  - BaseNodeGUID: 72bc28f7-f3d3-484f-8f74-86e549eab8b7
+    PortName: Anything work r
+    TargetNodeGUID: 876af3b0-b6f2-4b58-b45a-c3f267fc8a4c
+  - BaseNodeGUID: 876af3b0-b6f2-4b58-b45a-c3f267fc8a4c
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75
+  - BaseNodeGUID: 72bc28f7-f3d3-484f-8f74-86e549eab8b7
+    PortName: Any shady talk?
+    TargetNodeGUID: d1afd12e-189a-4475-bdb1-8d9456d1041a
+  - BaseNodeGUID: d1afd12e-189a-4475-bdb1-8d9456d1041a
+    PortName: Out
+    TargetNodeGUID: 93d1e997-3dec-4407-b747-f1bea6143918
+  - BaseNodeGUID: 93d1e997-3dec-4407-b747-f1bea6143918
+    PortName: Out
+    TargetNodeGUID: 7d0799b5-e3da-4540-95db-96be89ac2e75

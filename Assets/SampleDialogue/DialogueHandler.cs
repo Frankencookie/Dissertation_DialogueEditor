@@ -27,6 +27,13 @@ public class DialogueHandler : MonoBehaviour
     void Start()
     {
         self = this;
+        //BeginDialogue();
+        StartCoroutine("StartDelay");
+    }
+
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
         BeginDialogue();
     }
 
@@ -35,8 +42,10 @@ public class DialogueHandler : MonoBehaviour
     {
         if(dialogueActive)
         {
-            spokenTextComponent.text = currentText;
+            //spokenTextComponent.text = currentText;
             currentTime += Time.deltaTime;
+
+            spokenTextComponent.text = currentText;
 
             if(currentTime > changeTime && currentNode.nodeType == ENodeType.SPEAK)
             {
@@ -47,6 +56,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void GetNextLine()
     {
+        DialogueEventHandler.DialogueNodeFinish(currentNode.eventID);
         if(currentNode.ConnectedNodes.Count > 0)
         {
             currentTime = 0;
@@ -68,6 +78,8 @@ public class DialogueHandler : MonoBehaviour
 
     public void ProcessNextNode()
     {
+        //Call node start event
+        DialogueEventHandler.DialogueNodeStart(currentNode.eventID);
         //Make the spoken text appear if hidden
         spokenTextComponent.enabled = true;
 
@@ -81,8 +93,13 @@ public class DialogueHandler : MonoBehaviour
             dialogueOptions.Clear();
         }
 
+
         switch(currentNode.nodeType)
         {
+            case ENodeType.ENTRY:
+                currentNode = FindNodeByGUID(currentNode.ConnectedNodes[0]);
+                ProcessNextNode();
+                return;
             case ENodeType.SPEAK:
                 currentText = currentNode.dialogueText.engText;
                 break;
@@ -110,21 +127,53 @@ public class DialogueHandler : MonoBehaviour
     public void OptionChosen(int id)
     {
         Debug.Log(id);
+        DialogueEventHandler.DialogueChoiceChosen(id);
         currentNode = FindNodeByGUID(currentNode.choices[id].connectedNode);
+        if(currentNode == null)
+        {
+            EndDialogue();
+        }
         currentTime = 0;
         ProcessNextNode();
     }
 
-    public void BeginDialogue()
+    public void BeginDialogue(DialogueContainerSO newDialogue = null)
     {
-        currentNode = FindNodeByGUID(dialogueObject.nodes[0].ConnectedNodes[0]);
+        //If we are trying to assign and open dialogue, set current 
+        if(newDialogue != null)
+        {
+            Debug.Log("Dialogue assigned on Begin Dialogue");
+            dialogueObject = newDialogue;
+        }
+        if(dialogueObject == null)
+        {
+            Debug.Log("No dialogue assigned, not opening dialogue");
+            return;
+        }
+        currentNode = FindEntry();
         dialogueActive = true;
         ProcessNextNode();
         currentTime = 0;
+        DialogueEventHandler.DialogueOpen();
+    }
+
+    public DialogueNodeBase FindEntry()
+    {
+        foreach (var item in dialogueObject.nodes)
+        {
+            if(item.nodeType == ENodeType.ENTRY)
+            {
+                Debug.Log("Entry Found");
+                return item;
+            }
+        }
+        Debug.Log("No Entry found");
+        return null;
     }
 
     public void EndDialogue()
     {
+        DialogueEventHandler.DialogueClose();
         dialogueActive = false;
         currentTime = 0;
     }
@@ -141,15 +190,4 @@ public class DialogueHandler : MonoBehaviour
 
         return null;
     }
-}
-
-public class DialogueSelectItem
-{
-
-}
-
-public enum NodeType
-{
-    NODE_SPEAK,
-    NODE_CHOOSE
 }

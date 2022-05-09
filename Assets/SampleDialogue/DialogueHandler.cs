@@ -26,6 +26,12 @@ public class DialogueHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //If a handler already exists, destroy this one
+        if(self != null)
+        {
+            Debug.LogWarning("Duplicate Dialogue Handler found, deleting...");
+            Destroy(this);
+        }
         self = this;
         //BeginDialogue();
         StartCoroutine("StartDelay");

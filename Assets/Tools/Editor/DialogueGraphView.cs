@@ -51,22 +51,26 @@ public class DialogueGraphView : GraphView
                 entry = true;
                 newNode.entry = true;
                 newNode.tooltip = "This is where the dialogue tree starts";
+                newNode.styleSheets.Add(Resources.Load<StyleSheet>("EntryNode"));
                 
                 break;
 
             case ENodeType.SPEAK:
                 newNode = new EdSpeakNode();
                 newNode.tooltip = "This controls what the NPC is saying";
+                newNode.styleSheets.Add(Resources.Load<StyleSheet>("NPCnode"));
                 break;
 
             case ENodeType.PLAYER:
                 newNode = new EdPlayerNode();
                 newNode.tooltip = "This is a dialogue choice node for the player. Use this to create branches";
+                newNode.styleSheets.Add(Resources.Load<StyleSheet>("PlayerNode"));
                 break;
 
             case ENodeType.RANDOM:
                 newNode = new EdRandomNode();
                 newNode.tooltip = "This node picks a connected node at random";
+                newNode.styleSheets.Add(Resources.Load<StyleSheet>("RandomNode"));
                 break;
             default:
                 return null;
@@ -79,7 +83,7 @@ public class DialogueGraphView : GraphView
         newNode.nodeType = type;
 
         //Style sheet for looks
-        newNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+        //newNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
         
         if(!entry) //If not an entry node, add an input port
         {

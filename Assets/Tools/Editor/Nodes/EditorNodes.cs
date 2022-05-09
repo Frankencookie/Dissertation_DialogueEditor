@@ -73,7 +73,12 @@ public class EditorNodeBase : Node
 
     public void RemovePlayerChoice()
     {
-        
+        if(choices.Count < 1)
+        {
+            return;
+        }
+        graphView.RemoveLastPort(this);
+        choices.RemoveAt(choices.Count - 1);
     }
 
     public void UpdatePlayerChoice(string newText, int index)

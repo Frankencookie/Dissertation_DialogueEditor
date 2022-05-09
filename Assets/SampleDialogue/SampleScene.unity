@@ -284,78 +284,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &848024971 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1895662586768266256, guid: 098c4fa891bae5a4a8d0b08b94e6eff4, type: 3}
-  m_PrefabInstance: {fileID: 1895662586670615016}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &937766692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1895662587541424123, guid: 098c4fa891bae5a4a8d0b08b94e6eff4, type: 3}
-  m_PrefabInstance: {fileID: 1895662586670615016}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &937766696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937766692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3008ba2bdca4904ab6497d9f7cc5f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appearAnim:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: -400
-      inSlope: 420.1278
-      outSlope: 420.1278
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.09893048
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -224.09108
-      outSlope: -224.09108
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.0775404
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  hideAnim:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 385.6518
-      outSlope: 385.6518
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.11497326
-    - serializedVersion: 3
-      time: 1
-      value: -400
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  rectTransform: {fileID: 0}
-  backgroundObject: {fileID: 848024971}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,13 +487,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1895662587429971242, guid: 098c4fa891bae5a4a8d0b08b94e6eff4, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1895662587541424125, guid: 098c4fa891bae5a4a8d0b08b94e6eff4, type: 3}
       propertyPath: dialogueObject
       value: 
-      objectReference: {fileID: 11400000, guid: ebe334af761784541885294226e80dc4, type: 2}
+      objectReference: {fileID: 11400000, guid: a95802d2c7ffbbb4ca7235e9472b2c85, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 098c4fa891bae5a4a8d0b08b94e6eff4, type: 3}

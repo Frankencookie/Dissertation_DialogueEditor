@@ -100,6 +100,6 @@ public class DialogueGraph : EditorWindow
             default:
                 break;
         }
-        graphView.CreateNewNode(nodeName, type, Vector2.zero);
+        graphView.CreateNewNode(nodeName, type, rootVisualElement.LocalToWorld(Event.current.mousePosition));
     }
 }

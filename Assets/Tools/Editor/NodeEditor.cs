@@ -88,7 +88,8 @@ public class NodeInspector : EditorWindow
                 }
                 if(GUILayout.Button("Remove Choice"))
                 {
-                    _graphView.RemoveLastPort(nodeToEdit);
+                    //_graphView.RemoveLastPort(nodeToEdit);
+                    nodeToEdit.RemovePlayerChoice();
                 }
                 break;
         }
